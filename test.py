@@ -1,7 +1,18 @@
+from Bio.Blast.NCBIWWW import qblast
 from pdbe import pyPDBeREST
 import json
 
+def find_uniprot_ligands(uniprot_id):
+    return 1
 
+def blast_pdb(uniprot_id, verbose=False):
+
+    results_handle = qblast("blastp", "pdb", uniprot_id)
+    blast_results = NCBIXML.read(result_handle)
+
+    if verbose:
+        for blast_result in blast_results:
+            print(blast_result)
 
 def fetch_pdb_ligands(pdb_id, verbose=False):
 
@@ -25,3 +36,5 @@ def fetch_pdb_ligands(pdb_id, verbose=False):
     return data
 
 fetch_pdb_ligands("4hhb", verbose=True)
+
+blast_pdb("P69905", verbose=True)
